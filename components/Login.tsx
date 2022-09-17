@@ -14,24 +14,8 @@ const Login: FunctionComponent = (): JSX.Element => {
   return (
     <>
       <form onSubmit={handleSubmit(onSubmit)}>
-        <Input
-          name="email"
-          InputType="email"
-          control={control}
-          label={'Email'}
-          size={'medium'}
-          startIcon={{ icon: <Mail />, position: 'start', shouldInclude: true }}
-          required={true}
-        />
-        <Input
-          name="Password"
-          InputType="password"
-          control={control}
-          label={'Password'}
-          size={'medium'}
-          startIcon={{ icon: <Lock />, position: 'start', shouldInclude: true }}
-          required={true}
-        />
+        <Input name="email" InputType="email" control={control} label={'Email'} required />
+        <Input name="Password" InputType="password" control={control} label={'Password'} required />
         <Button
           onClick={() => console.log('hello')}
           label="Submit"

@@ -1,21 +1,8 @@
 import React, { CSSProperties, FunctionComponent, memo, MouseEventHandler, ReactNode } from 'react';
 import Btn from '@mui/material/Button';
 import { createTheme, Theme, ThemeProvider } from '@mui/material';
-import { type } from 'os';
 
-const theme: Theme = createTheme({
-  palette: {
-    primary: {
-      main: '#03a9f4'
-    },
-    error: {
-      main: '#ef5350'
-    },
-    success: {
-      main: '#4caf50'
-    }
-  }
-});
+
 
 interface iButton {
   variant: 'text' | 'contained' | 'outlined';

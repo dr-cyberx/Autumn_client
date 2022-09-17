@@ -95,4 +95,4 @@ Input.defaultProps = {
   }
 };
 
-export default memo(Input);
+export default Input;
