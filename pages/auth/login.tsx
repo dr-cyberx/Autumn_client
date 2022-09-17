@@ -1,26 +1,14 @@
 import React, { FunctionComponent } from 'react';
 import { useForm } from 'react-hook-form';
-import Input from '../../components/core/Input';
-import { Mail } from '@mui/icons-material';
+import LoginPage from '../../components/Login';
+import { NextPage } from 'next';
 
 interface iLogin {}
 
-const Login: FunctionComponent = (): JSX.Element => {
-  const { control } = useForm();
-
+const Login: NextPage = (): JSX.Element => {
   return (
     <>
-      <Input
-        name={'username'}
-        label={'Password'}
-        control={control}
-        InputType={'password'}
-        endIcon={{
-          icon: <Mail />,
-          position: 'end',
-          shouldInclude: true
-        }}
-      />
+      <LoginPage />
     </>
   );
 };

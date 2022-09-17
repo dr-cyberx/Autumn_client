@@ -1,13 +1,12 @@
-import React, { FunctionComponent, memo, ReactNode, useState } from 'react';
-import { IconButton, InputAdornment, SvgIconTypeMap, TextField } from '@mui/material';
+import React, { cloneElement, FunctionComponent, memo, ReactElement } from 'react';
+import { Box, InputAdornment, TextField } from '@mui/material';
 import { useController } from 'react-hook-form';
 import { UseControlledProps } from '@mui/utils/useControlled';
-import { Visibility, VisibilityOff } from '@mui/icons-material';
 
 type Icons = {
   shouldInclude: boolean;
   position: 'start' | 'end';
-  icon: ReactNode;
+  icon: ReactElement;
 };
 
 interface iInput {
@@ -43,71 +42,40 @@ const Input: FunctionComponent<iInput> = ({
     control,
     rules: { required }
   });
-  const [btnType, setBtnType] = useState<boolean>(false);
 
-  const TogglePasswordIcons = (): JSX.Element => {
+  const showInputIcon = (icon: Icons['icon']): JSX.Element => {
     return (
       <>
-        {btnType
-          ? {
-              endAdornment: (
-                <InputAdornment position="end">
-                  <IconButton
-                    aria-label="toggle password visibility"
-                    onClick={() => setBtnType(true)}
-                    edge="end">
-                    <VisibilityOff />
-                  </IconButton>
-                </InputAdornment>
-              )
-            }
-          : {
-              endAdornment: (
-                <InputAdornment position="end">
-                  <IconButton
-                    aria-label="toggle password visibility"
-                    onClick={() => setBtnType(false)}
-                    edge="end">
-                    <Visibility />
-                  </IconButton>
-                </InputAdornment>
-              )
-            }}
+        {cloneElement(icon, {
+          sx: { color: error ? '#d32f2f' : 'action.active', mr: 1, my: 0.5 }
+        })}
       </>
     );
   };
 
   return (
     <>
-      <TextField
-        error={error ? true : false}
-        // id="filled-basic"
-        id="input-with-sx"
-        label={label}
-        value={value}
-        type={InputType}
-        variant="filled"
-        style={style}
-        disabled={disabled}
-        onChange={onChange}
-        helperText={error ? error.message : ''}
-        size={size}
-        InputProps={
-          startIcon?.shouldInclude
-            ? {
-                startAdornment: (
-                  <InputAdornment position={startIcon.position}>{startIcon.icon}</InputAdornment>
-                )
-              }
-            : endIcon?.shouldInclude
-            ? {
-                endAdornment: (
-                  <InputAdornment position={endIcon.position}>{endIcon.icon}</InputAdornment>
-                )
-              }
-            : {}
-        }
-      />
+      <Box sx={{ display: 'flex', alignItems: 'flex-end' }}>
+        {startIcon?.shouldInclude
+          ? showInputIcon(startIcon.icon)
+          : endIcon?.shouldInclude
+          ? showInputIcon(endIcon.icon)
+          : null}
+        <TextField
+          error={error ? true : false}
+          name={name}
+          id="input-with-sx"
+          label={label}
+          value={value}
+          type={InputType}
+          variant="standard"
+          style={style}
+          disabled={disabled}
+          onChange={onChange}
+          helperText={error ? error.message : ''}
+          size={size}
+        />
+      </Box>
     </>
   );
 };
