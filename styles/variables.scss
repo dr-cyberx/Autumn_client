@@ -1,12 +1,14 @@
-$color-primary: rgb(49, 130, 206);
-$color-error: rgb(229, 67, 62);
-$color-success: rgb(71, 161, 105);
-$color-linkedIn: rgb(16, 160, 220);
-$color-facebook: rgb(56, 88, 152);
-$color-whatsApp: rgb(92, 196, 95);
-$color-twitter: rgb(29, 161, 242);
-$color-grey: rgb(237, 242, 247);
-$color-text-dark: rgb(45,55,72);
-$border-radius-primary: 6px;
-$box-shadow-primary: rgba(149, 157, 165, 0.2) 0px 8px 24px;
-$box-shadow-secondary: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+.theme_light {// todo variable
+  --var-color-primary: rgb(49 130 206);
+  --var-color-error: rgb(229 67 62);    
+  --var-color-success: rgb(71 161 105);
+  --var-color-linkedin: rgb(16 160 220);
+  --var-color-facebook: rgb(56 88 152);
+  --var-color-whatsapp: rgb(92 196 95);
+  --var-color-twitter: rgb(29 161 242);
+  --var-color-grey: rgb(237 242 247);
+  --var-color-text-dark: rgb(45 55 72);
+  --var-border-radius-primary: 6px;
+  --var-box-shadow-primary: rgb(149 157 165 / 20%) 0 8px 24px;
+  --var-box-shadow-secondary: rgb(0 0 0 / 35%) 0 5px 15px;
+}

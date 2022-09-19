@@ -1,6 +1,11 @@
 #!/usr/bin/env sh
 . "$(dirname -- "$0")/_/husky.sh"
 
+npm run lint:css:fix ||
+(
+    echo '❌ Stylelint messsage: linting failed ! ❌'
+)
+
 npm run build ||
 (
     echo '❌👷🔨❌ Build message: Build creation failed ❌👷🔨❌
