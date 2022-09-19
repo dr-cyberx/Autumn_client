@@ -1,0 +1,6 @@
+@import '../variables';
+@import '../mixins';
+
+.login_page_container {
+  border: 2px solid var(--var-color-error);
+}
