@@ -2,8 +2,6 @@ import React, { CSSProperties, FunctionComponent, memo, MouseEventHandler, React
 import Btn from '@mui/material/Button';
 import { createTheme, Theme, ThemeProvider } from '@mui/material';
 
-
-
 interface iButton {
   variant: 'text' | 'contained' | 'outlined';
   label: string;
@@ -32,7 +30,13 @@ const Button: FunctionComponent<iButton> = ({
       {/* <ThemeProvider theme={theme}> */}
       <Btn
         variant={variant}
-        style={{ fontWeight: 550, ...style }}
+        style={{
+          backgroundColor: 'rgb(239,88,36)',
+          borderRadius: '6px',
+          fontWeight: 550,
+          ...style,
+          width: '100%'
+        }}
         disabled={disabled}
         type={type}
         onClick={onClick}
@@ -53,7 +57,7 @@ Button.defaultProps = {
   endIcon: <></>,
   startIcon: <></>,
   label: 'Autmn',
-  type: 'button',
+  type: 'button'
 };
 
 export default memo(Button);
