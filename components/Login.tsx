@@ -1,29 +1,48 @@
 import React, { FunctionComponent, useEffect, useState } from 'react';
 import { FieldValues, useForm } from 'react-hook-form';
-import { Mail, Lock } from '@mui/icons-material';
-import Input from '@core/Input';
-import Button from '@core/Button';
+import { Mail, Lock, Email } from '@mui/icons-material';
+import Input, { iInput } from '@core/Input';
+import Button, { iButton } from '@core/Button';
 import styles from '@styles/components/Login.module.scss';
-import Spacer from './core/Spacer';
-import Logo from './Logo';
+import AuthPageLayout from './core/AuthPageLayout';
+import AutumnForm from './core/AutumnForm';
 
 const Login: FunctionComponent = (): JSX.Element => {
-  const { control, handleSubmit } = useForm<FieldValues, any>();
-  const [bgImage, setBgImage] = useState<Number>(Math.floor(Math.random() * 4) + 1);
-  let bg: any;
 
-  const updateCount = (): void => {
-    bg =
-      !bg &&
-      setInterval(() => {
-        setBgImage(Math.floor(Math.random() * 4) + 1); // new
-      }, 15000);
-  };
-
-  useEffect(() => {
-    updateCount();
-    return () => clearInterval(bg);
-  }, []);
+  const loginInputArray: iInput[] = [
+    {
+      name: 'email',
+      InputType: 'email',
+      label: 'Email',
+      required: true,
+      startIcon: { icon: <Mail />, position: 'start', shouldInclude: true }
+    },
+    {
+      name: 'Password',
+      InputType: 'password',
+      label: 'Password',
+      required: true,
+      startIcon: { icon: <Lock />, position: 'start', shouldInclude: true }
+    }
+  ];
+  
+  const loginButtonArray: iButton[] = [
+    {
+      onClick: () => console.log('hello'),
+      label: 'Login',
+      variant: 'contained',
+      btnSize: 'large',
+      type: 'submit'
+    },
+    {
+      onClick: () => console.log('hello'),
+      label: 'forgot Password ?',
+      fontWeight: 500,
+      btnSize: 'large',
+      type: 'button',
+      variant: 'text'
+    }
+  ];
 
   function onSubmit(data: any) {
     console.log('data -> ', data);
@@ -31,55 +50,22 @@ const Login: FunctionComponent = (): JSX.Element => {
 
   return (
     <>
-      <div
-        className={styles.login_page_container}
-        style={{ backgroundImage: `url('/assets/img_${bgImage}.jpg')` }}>
-        <div className={styles.login_form_container}>
-          <div className={styles.logo_container}>
-            <Logo size="large" altText="logo" />
-          </div>
-          <div className={styles.title_container}>
-            <h1>Login</h1>
-          </div>
-          <form onSubmit={handleSubmit(onSubmit)} className={styles.login_form}>
-            <Input
-              name="email"
-              InputType="email"
-              control={control}
-              label={'Email'}
-              required
-              startIcon={{ icon: <Mail />, position: 'start', shouldInclude: true }}
-            />
-            <Input
-              name="Password"
-              InputType="password"
-              control={control}
-              label={'Password'}
-              required
-              startIcon={{ icon: <Lock />, position: 'start', shouldInclude: true }}
-            />
-            <Spacer />
-            <Button
-              onClick={() => console.log('hello')}
-              label="Login"
-              variant="contained"
-              btnSize="large"
-              type="submit"
-            />
-          </form>
-          <div className={styles.links_container}>
-            <p>forgot Password ?</p>
-            <Button
-              onClick={() => console.log('hello')}
-              label="Sign Up"
-              variant="contained"
-              btnSize="large"
-              type="submit"
-            />
-          </div>
+      <AuthPageLayout title="Login">
+        <AutumnForm
+          loginButtonArray={loginButtonArray}
+          loginInputArray={loginInputArray}
+          onSubmit={onSubmit}
+        />
+        <div className={styles.links_container}>
+          <Button
+            onClick={() => console.log('hello')}
+            label="Sign Up"
+            variant="contained"
+            btnSize="large"
+            type="submit"
+          />
         </div>
-      </div>
-      <div className={styles.bg_drop_shadow} />
+      </AuthPageLayout>
     </>
   );
 };
