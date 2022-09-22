@@ -9,7 +9,7 @@ type Icons = {
   icon: ReactElement;
 };
 
-interface iInput {
+export interface iInput {
   name: string | any;
   label?: string;
   InputType?: 'text' | 'number' | 'password' | 'email' | 'tel';

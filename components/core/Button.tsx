@@ -2,11 +2,12 @@ import React, { CSSProperties, FunctionComponent, memo, MouseEventHandler, React
 import Btn from '@mui/material/Button';
 import { createTheme, Theme, ThemeProvider } from '@mui/material';
 
-interface iButton {
+export interface iButton {
   variant: 'text' | 'contained' | 'outlined';
   label: string;
   style?: CSSProperties;
   disabled?: boolean;
+  fontWeight?: number;
   startIcon?: ReactNode;
   onClick: MouseEventHandler<HTMLAnchorElement> | any;
   endIcon?: ReactNode;
@@ -17,6 +18,7 @@ interface iButton {
 const Button: FunctionComponent<iButton> = ({
   variant,
   label,
+  fontWeight,
   style,
   disabled,
   type,
@@ -31,9 +33,9 @@ const Button: FunctionComponent<iButton> = ({
       <Btn
         variant={variant}
         style={{
-          backgroundColor: 'rgb(239,88,36)',
+          backgroundColor: variant !== 'text' ? 'rgb(239,88,36)' : 'transparent',
           borderRadius: '6px',
-          fontWeight: 550,
+          fontWeight,
           ...style,
           width: '100%'
         }}
@@ -55,6 +57,7 @@ Button.defaultProps = {
   btnSize: 'medium',
   disabled: false,
   endIcon: <></>,
+  fontWeight: 550,
   startIcon: <></>,
   label: 'Autmn',
   type: 'button'

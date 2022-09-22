@@ -1,0 +1,10 @@
+@import '../../variables.scss';
+
+.autumn_form {
+  min-height: 55%;
+  width: 75%;
+  height: 240px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
